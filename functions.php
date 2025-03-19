@@ -9,7 +9,7 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.6' );
+	define( '_S_VERSION', '1.0.1' );
 }
 
 /**
@@ -237,11 +237,13 @@ function automatic_GitHub_updates($data) {
   $theme   = get_stylesheet(); // Folder name of the current theme
   $current = wp_get_theme()->get('Version'); // Get the version of the current theme
   // GitHub information
-  $user = 'aolijar'; // The GitHub username hosting the repository
-  $repo = 'aerizTheme'; // Repository name as it appears in the URL
+
+  $user = 'OmniAuti'; // The GitHub username hosting the repository
+  $repo = 'labscc'; // Repository name as it appears in the URL
+
   // Get the latest release tag from the repository. The User-Agent header must be sent, as per
   // GitHub's API documentation: https://developer.github.com/v3/#user-agent-required
-  $file = @json_decode(@file_get_contents('https://api.github.com/repos/omniauti/labs.cc/releases', false,
+  $file = @json_decode(@file_get_contents('https://api.github.com/repos/OmniAuti/labscc/releases', false,
       stream_context_create(['http' => ['header' => "User-Agent: ".$user."\r\n"]])
   ));
   if($file) {
@@ -253,7 +255,7 @@ function automatic_GitHub_updates($data) {
 	      // Strip the version number of any non-alpha characters (excluding the period)
 	      // This way you can still use tags like v1.1 or ver1.1 if desired
 	      'new_version' => $update,
-	      'url'         => 'https://api.github.com/repos/omniauti/labs.cc/releases',
+	      'url'         => 'https://api.github.com/repos/OmniAuti/labscc/releases',
 	      'package'     => $file[0]->assets[0]->browser_download_url,
       );
     }
